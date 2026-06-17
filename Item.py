@@ -29,7 +29,9 @@ class Item:
     def get_preco(self):
         return self.preco
 
-    
+    def vender(self,qntd):
+        self.estoque -= qntd
+        return self.preco*qntd
 
     def __str__(self):
         return f"{self.nome}: \n * {self.descricao}\nPor {self.preco}R$"

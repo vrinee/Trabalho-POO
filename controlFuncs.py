@@ -46,7 +46,9 @@ def listar_users(users):
         for user in users:
             print(user)
 
-
+def listar_menu(menu):
+    for i in menu:
+        print(i)
 
 def mudar_info_user(user):
     print("\nMenu de edição de informações do usuário:")
@@ -76,6 +78,29 @@ def mudar_info_user(user):
         print("Voltando ao menu anterior...")
     else:
         print("Opção inválida! Tente novamente.")
+
+
+def menu_loja(current_user,menu,faturamento):
+    while True:
+        print("\nMenu da loja:")
+        print("1. Mostrar o cardápio")
+        print("2. Adicionar item ao carrinho")
+        print("3. Retirar item do carrinho")
+        print("4. Mostrar carrinho")
+        print("5. Finalizar compra")
+        print()
+        op = input("Digite a opção desejada: ")
+        if op == "1":
+            listar_menu(menu)
+        elif op == "2":
+            current_user.add_item(menu)
+        elif op == "3":
+            current_user.remove_item(menu)
+        elif op == "4":
+            current_user.show_carrinho()
+        elif op == "5":
+            faturamento += current_user.comprar_carrinho()
+
 
 def adm_menu(admins,users,current_admin):
     while True:
@@ -116,13 +141,14 @@ def adm_menu(admins,users,current_admin):
             print("Opção inválida! Tente novamente.")
 
 
-def user_menu(users,current_user):
+def user_menu(users,current_user,menu,faturamento):
     while True:
         print("\nMenu do Usuário:")
         print("1. Editar informações")
         print("2. Exibir informações")
         print("3. Excluir conta")
-        print("4. Sair")
+        print("4. Menu da loja")
+        print("5. Sair")
         print()
         op = input("Digite a opção desejada: ")
         if op == "1":
@@ -137,6 +163,8 @@ def user_menu(users,current_user):
                 break
             print("Senha incorreta! Exclusão cancelada.")
         elif op == "4":
+            manu_loja(current_user,menu,faturamento)
+        elif op == "5":
             print("Saindo do menu do usuário...")
             break
         else:

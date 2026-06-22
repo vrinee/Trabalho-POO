@@ -26,6 +26,11 @@ class Item:
     def get_estoque(self):
         return self.estoque
 
+    def get_disponivel(self,qntd):
+        if self.estoque > qntd:
+            return True
+        return False
+
     def get_preco(self):
         return self.preco
 

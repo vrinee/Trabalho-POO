@@ -11,6 +11,29 @@ class Carrinho:
     def __init__(self):
         self.itens = []
     
+    def add_item(self,item,qntd):
+        for i in self.itens:
+            if i[0] == item:
+                i[1] += qntd
+                return
+        self.itens.append([item,qntd])
+        print("Item adicionado com sucesso")
+
+    def remove_item(self,item,qntd):
+        for i in self.itens:
+            if i[0] == item:
+                if i[1] - qntd < 0:
+                    print("Quantidade inválida")
+                    return
+                if i[1] - qntd == 0:
+                    self.itens.remove(i)
+                    print("Item removido com sucesso")
+                    return
+                i[1] = i[1] - qntd
+                print("Quantidade deduzida com sucesso")
+                return
+
+    
     def subtotal(self):
         sub = 0
         for i in self.itens:
@@ -28,6 +51,8 @@ class Carrinho:
         result = ""
         for i in self.itens:
             result = result+ "-"*30 + f"\n{i[1]}x {i[0]}\nPreço subtotal: {i[0].get_preco()*i[1]}\n"
+        result = result + f"Subtotal: {subtotal}"
+        return result
 
 
 class User:
@@ -73,6 +98,36 @@ class User:
     
     def get_senha(self):
         return self.senha
+
+    def show_carrinho(self):
+        print(self.carrinho)
+
+    def get_carrinho_subtotal(self):
+        return self.carrinho.subtotal()
+
+    def add_item(self,itens):
+        nome = input("Digite o nome do item a adicionar: ")
+        qntd = int(input("Digite a quantidade: "))
+
+        for i in itens:
+            if nome == i.get_nome():
+                if i.get_disponivel(qntd):
+                    self.carrinho.add_item(i,qntd)
+                    return
+                print("Não há estoque suficiente.")
+        print("Item não foi encontrado")
+
+    def remove_item(self,itens):
+        nome = input("Digite o item a deletar: ")
+        qntd = int(input("Digite a quantidade: "))
+
+        for i in itens:
+            if i.get_nome() == nome:
+                self.carrinho.remove_item(i,qntd)
+                return
+    
+    def comprar_carrinho(self):
+        return self.carrinho.vender()
 
     def excluir_user(self,users):
         for user in users:

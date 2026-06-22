@@ -4,6 +4,8 @@ from User import User
 
 admins = []
 usuarios = []
+faturamento = 0
+menu = []
 admins.append(Admin("Root","1234"))
 
 print(admins[0])
@@ -26,7 +28,7 @@ while True:
                 if user.get_cpf() == cpf:
                     logou = True
                     if user.get_senha() == senha:
-                        controlFuncs.user_menu(usuarios,user)
+                        controlFuncs.user_menu(usuarios,user,menu,faturamento)
                         break
                     print("Senha incorreta!!")
             if not logou:

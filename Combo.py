@@ -29,6 +29,13 @@ class Combo:
     def get_limite_diario(self):
         return self.limiteDiario
 
+    def get_disponivel(self,qntd):
+        if self.limiteDiario < qntd
+            return False
+        if self.get_estoque_itens():
+            return True
+        return False
+
     def set_limite_diario(self, limiteDiario):
         self.limiteDiario = limiteDiario
 
@@ -37,6 +44,12 @@ class Combo:
 
     def set_itens(self, itens):
         self.itens = itens
+
+    def get_estoque_itens(self,qntd = 1):
+        for i in self.itens:
+            if i[0].get_estoque() < i[1]*qntd:
+                return False
+        return True
 
     def add_item(self,item,qntd):
         self.itens.append([item,qntd])

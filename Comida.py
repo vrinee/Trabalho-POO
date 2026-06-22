@@ -11,8 +11,8 @@ class Comida(Item):
     def get_alergenico(self):
         return self.alergenico
 
-    def __str__(self)
-        string = super().__str__():
+    def __str__(self):
+        string = super().__str__()
         if alergenico == None:
             return string
         return string + f"Contém: {self.alergenico}"

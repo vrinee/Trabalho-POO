@@ -5,7 +5,7 @@ class Item:
         self.estoque = estoque
         self.preco = preco
 
-    def set_nome(self.nome):
+    def set_nome(self,nome):
         self.nome = nome
 
     def set_descricao(self,descricao):

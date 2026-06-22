@@ -88,6 +88,7 @@ def menu_loja(current_user,menu,faturamento):
         print("3. Retirar item do carrinho")
         print("4. Mostrar carrinho")
         print("5. Finalizar compra")
+        print("6. Sair")
         print()
         op = input("Digite a opção desejada: ")
         if op == "1":
@@ -100,31 +101,50 @@ def menu_loja(current_user,menu,faturamento):
             current_user.show_carrinho()
         elif op == "5":
             faturamento += current_user.comprar_carrinho()
+            print("Compra finalizada!")        
+        elif op == "6":
+            print("Saindo do menu da loja: ")
+            break
+        else:
+            print("Opção inválida! Tente novamente")
 
 
-def adm_menu(admins,users,current_admin):
+def adm_menu(admins,users,current_admin,items=[],combos=[],menu=[],faturamento=0):
     while True:
-        print("\nMenu do Admin:")
+        print("\n" + "="*50)
+        print("MENU DO ADMIN")
+        print("="*50)
+        print("\n--- USUÁRIOS ---")
         print("1. Cadastrar usuário")
         print("2. Excluir usuário")
-        print("3. Excluir admin")
-        print("4. Cadastrar admin")
-        print("5. Editar usuário")
-        print("6. Listar usuários")
-        print("7. Sair")
+        print("3. Editar usuário")
+        print("4. Listar usuários")
+        print("\n--- ITENS ---")
+        print("5. Adicionar item")
+        print("6. Editar item")
+        print("7. Excluir item")
+        print("\n--- COMBOS ---")
+        print("8. Adicionar combo")
+        print("9. Editar combo")
+        print("10. Excluir combo")
+        print("\n--- MENU ---")
+        print("11. Criar menu")
+        print("12. Editar menu")
+        print("\n--- FATURAMENTO ---")
+        print("13. Ver faturamento")
+        print("\n--- ADMIN ---")
+        print("14. Cadastrar admin")
+        print("15. Excluir admin")
+        print("16. Sair")
+        print("="*50)
         print()
         op = input("Digite a opção desejada: ")
+        
         if op == "1":
             current_admin.add_user(users)
         elif op == "2":
             current_admin.excluir_user(users)
         elif op == "3":
-            excluir_admin(admins,current_admin)
-            print("Saindo do menu do admin...")
-            break
-        elif op == "4":
-            admins.append(cadastrar_admin())
-        elif op == "5":
             cpf = input("Digite o CPF do usuário que deseja editar: ")
             for user in users:
                 if user.get_cpf() == cpf:
@@ -132,9 +152,35 @@ def adm_menu(admins,users,current_admin):
                     break
             else:
                 print("Usuário não encontrado!")
-        elif op == "6":
+        elif op == "4":
             listar_users(users)
+        elif op == "5":
+            current_admin.add_item(items)
+        elif op == "6":
+            current_admin.editar_item(items)
         elif op == "7":
+            current_admin.excluir_item(items)
+        elif op == "8":
+            current_admin.add_combo(combos, items)
+        elif op == "9":
+            current_admin.editar_combo(combos)
+        elif op == "10":
+            current_admin.excluir_combo(combos)
+        elif op == "11":
+            novo_menu = current_admin.add_menu(items, combos)
+            menu.clear()
+            menu.extend(novo_menu)
+        elif op == "12":
+            current_admin.editar_menu(menu, items, combos)
+        elif op == "13":
+            current_admin.ver_faturamento(faturamento)
+        elif op == "14":
+            admins.append(cadastrar_admin())
+        elif op == "15":
+            excluir_admin(admins, current_admin)
+            print("Saindo do menu do admin...")
+            break
+        elif op == "16":
             print("Saindo do menu do admin...")
             break
         else:
@@ -169,4 +215,5 @@ def user_menu(users,current_user,menu,faturamento):
             break
         else:
             print("Opção inválida! Tente novamente.")
+    return faturamento
 

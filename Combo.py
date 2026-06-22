@@ -30,7 +30,7 @@ class Combo:
         return self.limiteDiario
 
     def get_disponivel(self,qntd):
-        if self.limiteDiario < qntd
+        if self.limiteDiario < qntd:
             return False
         if self.get_estoque_itens():
             return True

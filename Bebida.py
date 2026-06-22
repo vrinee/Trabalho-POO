@@ -12,7 +12,7 @@ class Bebida(Item):
         return tamanho
 
     def get_disponivel(self,qntd):
-        if self.estoque > self.tamanho * qntd
+        if self.estoque > self.tamanho * qntd:
             return True
         return False
 
@@ -20,8 +20,8 @@ class Bebida(Item):
         self.estoque -= tamanho*qntd
         return self.preco*qntd
     
-    def __str__(self)
-    string = super().__str__()
-    string = string.removesuffix(f"\nPor {self.preco}R$")
-    string = string + f"Tamanho: {self.tamanho}ml \nPor {self.preco}R$"
-    return string
+    def __str__(self):
+        string = super().__str__()
+        string = string.removesuffix(f"\nPor {self.preco}R$")
+        string = string + f"Tamanho: {self.tamanho}ml \nPor {self.preco}R$"
+        return string

@@ -21,7 +21,7 @@ class Combo:
         self.descricao = descricao
 
     def get_preco(self):
-        return self.valor
+        return self.preco
 
     def set_preco(self, valor):
         self.preco = valor
@@ -62,4 +62,4 @@ class Combo:
 
 
     def __str__(self):
-        return f"{self.nome}: \n * {self.descricao}\nPor {self.valor}R$"
+        return f"Combo: {self.nome}: \n * {self.descricao}\nPor {self.preco}R$"

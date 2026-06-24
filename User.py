@@ -51,7 +51,7 @@ class Carrinho:
         result = ""
         for i in self.itens:
             result = result+ "-"*30 + f"\n{i[1]}x {i[0]}\nPreço subtotal: {i[0].get_preco()*i[1]}\n"
-        result = result + f"Subtotal: {subtotal}"
+        result = result + f"Subtotal: {self.subtotal()}"
         return result
 
 
@@ -100,6 +100,7 @@ class User:
         return self.senha
 
     def show_carrinho(self):
+        if len(self.carrinho.itens) == 0:
         print(self.carrinho)
 
     def get_carrinho_subtotal(self):

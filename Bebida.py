@@ -23,5 +23,5 @@ class Bebida(Item):
     def __str__(self):
         string = super().__str__()
         string = string.removesuffix(f"\nPor {self.preco}R$")
-        string = string + f"Tamanho: {self.tamanho}ml \nPor {self.preco}R$"
+        string = string + f"\nTamanho: {self.tamanho}ml \nPor {self.preco}R$"
         return string

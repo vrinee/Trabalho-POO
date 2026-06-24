@@ -48,6 +48,7 @@ def listar_users(users):
 
 def listar_menu(menu):
     for i in menu:
+        print()
         print(i)
 
 def mudar_info_user(user):
@@ -123,19 +124,22 @@ def adm_menu(admins,users,current_admin,items=[],combos=[],menu=[],faturamento=0
         print("5. Adicionar item")
         print("6. Editar item")
         print("7. Excluir item")
+        print("8. Listar itens")
         print("\n--- COMBOS ---")
-        print("8. Adicionar combo")
-        print("9. Editar combo")
-        print("10. Excluir combo")
+        print("9. Adicionar combo")
+        print("10. Editar combo")
+        print("11. Excluir combo")
+        print("12. Listar Ccombos")
         print("\n--- MENU ---")
-        print("11. Criar menu")
-        print("12. Editar menu")
+        print("13. Criar menu")
+        print("14. Editar menu")
+        print("15. Listar menu")
         print("\n--- FATURAMENTO ---")
-        print("13. Ver faturamento")
+        print("16. Ver faturamento")
         print("\n--- ADMIN ---")
-        print("14. Cadastrar admin")
-        print("15. Excluir admin")
-        print("16. Sair")
+        print("17. Cadastrar admin")
+        print("18. Excluir admin")
+        print("19. Sair")
         print("="*50)
         print()
         op = input("Digite a opção desejada: ")
@@ -161,26 +165,42 @@ def adm_menu(admins,users,current_admin,items=[],combos=[],menu=[],faturamento=0
         elif op == "7":
             current_admin.excluir_item(items)
         elif op == "8":
-            current_admin.add_combo(combos, items)
+            if len(items) == 0:
+                print("Não há itens")
+            else:
+                for i in items:
+                    print()
+                    print(i)
         elif op == "9":
-            current_admin.editar_combo(combos)
+            current_admin.add_combo(combos, items)
         elif op == "10":
-            current_admin.excluir_combo(combos)
+            current_admin.editar_combo(combos)
         elif op == "11":
+            current_admin.excluir_combo(combos)
+        elif op == "12":
+            if len(combos) == 0:
+                print("Não há combos")
+            else:
+                for i in combos:
+                    print()
+                    print(i)
+        elif op == "13":
             novo_menu = current_admin.add_menu(items, combos)
             menu.clear()
             menu.extend(novo_menu)
-        elif op == "12":
-            current_admin.editar_menu(menu, items, combos)
-        elif op == "13":
-            current_admin.ver_faturamento(faturamento)
         elif op == "14":
-            admins.append(cadastrar_admin())
+            current_admin.editar_menu(menu, items, combos)
         elif op == "15":
+            listar_menu(menu)
+        elif op == "16":
+            current_admin.ver_faturamento(faturamento)
+        elif op == "17":
+            admins.append(cadastrar_admin())
+        elif op == "18":
             excluir_admin(admins, current_admin)
             print("Saindo do menu do admin...")
             break
-        elif op == "16":
+        elif op == "19":
             print("Saindo do menu do admin...")
             break
         else:
@@ -209,7 +229,7 @@ def user_menu(users,current_user,menu,faturamento):
                 break
             print("Senha incorreta! Exclusão cancelada.")
         elif op == "4":
-            manu_loja(current_user,menu,faturamento)
+            faturamento = menu_loja(current_user,menu,faturamento)
         elif op == "5":
             print("Saindo do menu do usuário...")
             break

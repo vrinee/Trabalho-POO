@@ -1,6 +1,11 @@
 import controlFuncs
 from Admin import Admin
 from User import User
+from Comida import Comida
+from Bebida import Bebida
+from Item import Item
+from Combo import Combo
+
 
 admins = []
 usuarios = []
@@ -9,6 +14,18 @@ items = []
 combos = []
 menu = []
 admins.append(Admin("Root","1234"))
+usuarios.append(User("Default","100.200.300-40","email@email.com","48-98765-4321","01/01/2001","123abc"))
+items.append(Item("Genérico","lorem ipsum dolor sit amet, não lembro o resto",5,9.99))
+items.append(Comida("Yummers","yummyyyyyyyyyyyyyyyyyyyyyyy",10,5.99,"Nenhum, a não ser que seja alérgico a diversão :P"))
+items.append(Bebida("Leite","Muito proteico e sla mais oq, mas o arthur não tolera, em pleno 2026",10000,2.59,250))
+combos.append(Combo("404 not found","não encontrou nada só placeholder :P",17.98,6))
+combos[0].add_item(items[0],2)
+combos[0].add_item(items[1],1)
+combos[0].add_item(items[2],2)
+menu.append(items[0])
+menu.append(items[1])
+menu.append(items[2])
+menu.append(combos[0])
 
 print(admins[0])
 while True:

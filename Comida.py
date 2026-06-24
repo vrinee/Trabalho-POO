@@ -13,6 +13,6 @@ class Comida(Item):
 
     def __str__(self):
         string = super().__str__()
-        if alergenico == None:
+        if self.alergenico == None:
             return string
-        return string + f"Contém: {self.alergenico}"
+        return string + f"\nContém: {self.alergenico}"

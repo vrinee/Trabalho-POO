@@ -1,5 +1,6 @@
 from User import User
 from Admin import Admin
+from Combo import Combo
 
 def cadastrar_usuario():
     nome = input("Digite o nome do usuário: ")
@@ -46,8 +47,23 @@ def listar_users(users):
         for user in users:
             print(user)
 
-def listar_menu(menu):
-    for i in menu:
+def listar_menu(menu,user):
+    menuSemRec = menu[:]
+    rec = user.get_recomendado()
+    if rec != None:
+        for i in menu:
+            if isinstance(i,Combo):
+                if i.has_item(rec):
+                    rec = i
+                    break
+        menuSemRec.remove(rec)
+        print(">"*25,"Especial para você","<"*25)
+        print(rec)
+        print("="*70)
+
+
+
+    for i in menuSemRec:
         print()
         print(i)
 
@@ -93,7 +109,7 @@ def menu_loja(current_user,menu,faturamento):
         print()
         op = input("Digite a opção desejada: ")
         if op == "1":
-            listar_menu(menu)
+            listar_menu(menu,current_user)
         elif op == "2":
             current_user.add_item(menu)
         elif op == "3":

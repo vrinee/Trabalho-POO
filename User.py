@@ -10,6 +10,7 @@ def calcular_idade(dataNasc):
 class Carrinho:
     def __init__(self):
         self.itens = []
+        self.historico = []
     
     def add_item(self,item,qntd):
         for i in self.itens:
@@ -43,9 +44,28 @@ class Carrinho:
     def vender(self):
         valor = 0
         for i in self.itens:
+            added = False
             valor += i[0].vender(i[1])
+            for j in self.historico:
+                if j[0] == i[0]:
+                    j[1] += i[1]
+                    added = True
+                    break
+            if not added:
+                self.historico.append(i)
         self.itens = []
         return valor
+
+    def get_recomendado(self):
+        maior = 0
+        maiorItem = None
+        if len(self.historico) == 0:
+            return None
+        for i in self.historico:
+            if i[1] > maior:
+                maior = i[1]
+                maiorItem = i[0]
+        return maiorItem
 
     def __str__(self):
         result = ""
@@ -101,10 +121,13 @@ class User:
 
     def show_carrinho(self):
         if len(self.carrinho.itens) == 0:
-        print(self.carrinho)
+            print(self.carrinho)
 
     def get_carrinho_subtotal(self):
         return self.carrinho.subtotal()
+
+    def get_recomendado(self):
+        return self.carrinho.get_recomendado()
 
     def add_item(self,itens):
         nome = input("Digite o nome do item a adicionar: ")

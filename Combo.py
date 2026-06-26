@@ -60,6 +60,11 @@ class Combo:
             i[0].set_estoque(i[0].get_estoque() - (qntd*i[1]))
         return self.valor * qntd
 
+    def has_item(self,item):
+        for i in self.itens:
+            if i[0] == item:
+                return True
+        return False
 
     def __str__(self):
         return f"Combo: {self.nome}: \n * {self.descricao}\nPor {self.preco}R$"

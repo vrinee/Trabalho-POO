@@ -56,7 +56,7 @@ while True:
                 print("Login incorreto.")
         elif aux == "2":
             usuarios.append(controlFuncs.cadastrar_usuario())
-            controlFuncs.user_menu(usuarios,usuarios[-1])
+            faturamento = controlFuncs.user_menu(usuarios,usuarios[-1],menu,faturamento)
         else:
             print("Opção inválida! Tente novamente.")
     

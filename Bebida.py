@@ -17,7 +17,7 @@ class Bebida(Item):
         return False
 
     def vender(self,qntd):
-        self.estoque -= tamanho*qntd
+        self.estoque -= self.tamanho*qntd
         return self.preco*qntd
     
     def __str__(self):

@@ -120,7 +120,7 @@ class User:
         return self.senha
 
     def show_carrinho(self):
-        if len(self.carrinho.itens) == 0:
+        if len(self.carrinho.itens) != 0:
             print(self.carrinho)
 
     def get_carrinho_subtotal(self):

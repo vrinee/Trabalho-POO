@@ -56,9 +56,9 @@ class Combo:
 
     def vender(self,qntd):
         self.limiteDiario -= qntd
-        for i in itens:
+        for i in self.itens:
             i[0].set_estoque(i[0].get_estoque() - (qntd*i[1]))
-        return self.valor * qntd
+        return self.preco * qntd
 
     def has_item(self,item):
         for i in self.itens:
